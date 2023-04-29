@@ -7,6 +7,7 @@ module.exports = {
 	extends: [
 		"eslint:recommended",
 		"plugin:eslint-comments/recommended",
+		"plugin:jsdoc/recommended-error",
 		"plugin:regexp/recommended",
 		"prettier",
 	],
@@ -20,9 +21,14 @@ module.exports = {
 			extends: [
 				"plugin:@typescript-eslint/recommended",
 				"plugin:typescript-sort-keys/recommended",
+				"plugin:jsdoc/recommended-typescript-error",
 			],
 			files: ["**/*.ts"],
 			parser: "@typescript-eslint/parser",
+			rules: {
+				// These on-by-default rules don't work well for this repo and we like them off.
+				"jsdoc/require-jsdoc": "off",
+			},
 		},
 		{
 			extends: [
@@ -84,6 +90,7 @@ module.exports = {
 	plugins: [
 		"@typescript-eslint",
 		"deprecation",
+		"jsdoc",
 		"import",
 		"no-only-tests",
 		"regexp",
@@ -100,6 +107,7 @@ module.exports = {
 		"simple-import-sort/imports": "error",
 
 		// These on-by-default rules don't work well for this repo and we like them off.
+		"jsdoc/require-jsdoc": "off",
 		"no-inner-declarations": "off",
 
 		// Stylistic concerns that don't interfere with Prettier
