@@ -12,7 +12,7 @@ await $`rm -rf ${repository}`;
 
 await $({
 	stdio: "inherit",
-})`c8 -o ./coverage-create -r html -r lcov  --src src node ./bin/index.js --base everything --mode create --author ${author} --email ${email} --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-contributors --skip-github-api`;
+})`c8 -o ./coverage-create -r html -r lcov  --src src node ./bin/index.js --base everything --mode create --author ${author} --email ${email} --description ${description} --owner ${owner} --title ${title} --repository ${repository} --skip-contributors-data --skip-github-api`;
 
 process.chdir(repository);
 
@@ -27,7 +27,8 @@ for (const command of [
 	`pnpm run lint:package-json`,
 	`pnpm run lint:packages`,
 	`pnpm run lint:spelling`,
-	`pnpm run lint:knip`,
+	// https://github.com/webpro/knip/issues/219
+	// `pnpm run lint:knip`,
 	`pnpm run test run`,
 	`pnpm run tsc`,
 ]) {
