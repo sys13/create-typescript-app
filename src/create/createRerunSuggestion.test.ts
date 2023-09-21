@@ -46,6 +46,17 @@ describe("createRerunSuggestion", () => {
 		);
 	});
 
+	it("escapes $s from values", () => {
+		const actual = createRerunSuggestion("initialize", {
+			...options,
+			description: "Very $difficult $ description.",
+		});
+
+		expect(actual).toMatchInlineSnapshot(
+			'"npx create-typescript-app --mode initialize --base everything --author TestAuthor --create-repository true --description \\"Very \\\\$difficult \\\\$ description.\\" --email-github github@email.com --email-npm npm@email.com --exclude-compliance true --exclude-contributors true --exclude-lint-json true --exclude-lint-knip true --exclude-lint-package-json true --exclude-lint-perfectionist true --owner TestOwner --repository test-repository --skip-github-api true --skip-install true --skip-removal true --title \\"Test Title\\""',
+		);
+	});
+
 	it("includes stringified logo when it exists", () => {
 		const actual = createRerunSuggestion("initialize", {
 			...options,

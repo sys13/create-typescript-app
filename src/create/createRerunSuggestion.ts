@@ -38,7 +38,7 @@ export function createRerunSuggestion(
 			const valueStringified = `${value}`;
 			return `--${getFirstMatchingArg(key)} ${
 				valueStringified.includes(" ") ? `"${value}"` : value
-			}`;
+			}`.replaceAll("$", "\\$");
 		})
 		.join(" ");
 
