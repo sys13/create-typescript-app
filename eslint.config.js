@@ -85,7 +85,15 @@ export default tseslint.config(
 					allowConstantLoopConditions: true,
 				},
 			],
-			"@typescript-eslint/no-unused-vars": ["error", { caughtErrors: "all" }],
+			'@typescript-eslint/no-unused-vars': [
+				'error',
+				{
+					argsIgnorePattern: '^_',
+					caughtErrors: 'all',
+					ignoreRestSiblings: true,
+					varsIgnorePattern: '^_',
+				},
+			],
 			"@typescript-eslint/prefer-nullish-coalescing": [
 				"error",
 				{ ignorePrimitives: true },
